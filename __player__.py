@@ -23,6 +23,7 @@ class Player:
 
         self.walls = self.game.walls
 
+    #Permet d'effectuer les actions correspondantes à l'appui des touches sur le clavier
     def keypress(self, event):
         key = event.keysym
 
@@ -36,11 +37,13 @@ class Player:
             self.create_laser()
         self.canvas.coords(self.spaceship, self.shipX - 10, self.shipY - 10, self.shipX + 10, self.shipY + 10)
 
+    #Permet de créer un laser
     def create_laser(self):
         self.laser = self.canvas.create_oval(self.shipX - 3, self.shipY - 3, self.shipX + 3, self.shipY + 3, width=3, outline='black', fill='cyan')
         self.laserX, self.laserY = self.shipX, self.shipY
         self.check_laser()
 
+    #Permet de déplacer le laser et de vérifier s'il atteint un alien, un obstacle ou le haut de l'écran
     def check_laser(self):
         # Constate l'état du laser pour vérifier s'il atteint une cible, qu'il sort de l'écran ou s'il doit continue
         self.canvas.move(self.laser, 0, self.laserdY)
@@ -84,7 +87,7 @@ class Player:
                 self.laserX = self.canvas.coords(self.laser)[0]
                 self.canvas.after(10, self.check_laser)
 
+    # Setter pour récupérer le player dans l'objet alien
     def set_player_for_aliens(self):
-        # Setter pour récupérer le player dans l'objet alien
         for i in range(len(self.aliens)):
             self.aliens[i].set_player(self)

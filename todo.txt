@@ -1,12 +1,1 @@
-aliens qui descendent ( fait par jordan )
-protections
-perdre 1 vie si les aliens arrivent en bas
-recommencer la partie avec new game
-sauvegarder le high score
-bug: aliens qui bougent pas
-niveau suivant si on se débarasse de tous les aliens
 
-
-Pbs:
-    none "livesTxt"
-    relancer obj

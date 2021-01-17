@@ -36,11 +36,13 @@ class Alien:
         self.isShipHit = False
         self.isWallHit = False
 
+    #Permet de créer un laser
     def create_laser_alien(self):
         self.laseralien = self.canvas.create_oval(self.x - 3, self.y - 3, self.x + 3, self.y + 3, width=3, outline='black', fill='red')
         self.laseralienX, self.laseralienY = self.x, self.y
         self.check_laser_alien(self.canvas, self.player)
-        
+
+    #Fonction pour déplacer l'alien et vérifier s'il atteint le joueur
     def alien_movement(self):
         self.dy = 0
         if self.canvas.coords(self.alien):
@@ -69,12 +71,15 @@ class Alien:
             self.y = self.canvas.coords(self.alien)[1]
             self.window.after(1, self.alien_movement)
 
+    #Getter pour récupérer les coordonnées de l'alien
     def get_coordinates(self):
         return self.x, self.y
 
+    #Setter pour recevoir les coordonnées du joueur
     def set_player(self, player):
         self.player = player
 
+    #Permet de déplacer le laser et vérifier s'il atteint un obstacle, le joueur ou le bas de l'écran
     def check_laser_alien(self, canvas, player):
         try:
             self.shipX = player.shipX

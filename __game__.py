@@ -52,6 +52,7 @@ class Game:
         self.walls = []
         self.create_walls()
 
+    #Cette fonction permet de lancer une nouvelle partie
     def start(self):
 
         if self.firstGame is False:
@@ -87,6 +88,7 @@ class Game:
 
             self.window.mainloop()
 
+    #Cette fonction permet de passer au niveau suivant quand tous les aliens sont éliminés
     def level_up(self):
         self.regenerate_walls()
         self.nbAliens += 2
@@ -99,10 +101,12 @@ class Game:
         self.player = Player(self, self.window, self.canvas, self.aliens, self.nbAliens)
         self.canvas.bind('<Key>', self.player.keypress)
 
+    #Permet d'ajouter du score au joueur
     def add_score(self, score):
         self.scoreInt += score
         self.scoreTxt.set("Score : {}".format(self.scoreInt))
 
+    #Permet de supprimer un alien du jeu quand il est touché ou qu'il atteint le joueur
     def alien_killed(self, alien_obj):
         print("alien killed")
         self.add_score(10)
@@ -136,15 +140,18 @@ class Game:
         elif len(self.aliens) == 0:
             self.level_up()
 
+    #Régénère les obstacles
     def regenerate_walls(self):
         for i in range(len(self.wallX_list)):
             self.walls[i].destroyed = False
             self.canvas.itemconfigure(self.walls[i].wallSquare, state='normal')
 
+    #Crée les obstacles au lancement du jeu
     def create_walls(self):
         for i in range(len(self.wallX_list)):
             self.walls.append(Wall(self, self.wallX_list[i], self.wallY_list[i], self.canvas))
 
+    #Permet de détruire un mur touché par un laser
     def wall_detroyed(self, wall):
         for i in range(len(self.walls)):
             if self.walls[i] == wall:
