@@ -1,8 +1,9 @@
 import __game__ as g
 
 
+#TP Space Invader - Jordan Brassac - Timothée Levilly
 def main():
-    game = g.game()
+    game = g.Game()
     game.start()
 
 
