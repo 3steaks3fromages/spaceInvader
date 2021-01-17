@@ -62,7 +62,7 @@ class Game:
             try:
                 self.canvas.delete(self.player.spaceship)
             except AttributeError:
-                print("player n'existe pas")
+                pass
 
         self.nbAliens = 3
         self.aliens = []
@@ -108,20 +108,17 @@ class Game:
 
     #Permet de supprimer un alien du jeu quand il est touché ou qu'il atteint le joueur
     def alien_killed(self, alien_obj):
-        print("alien killed")
         self.add_score(10)
 
         self.canvas.delete(alien_obj.alien)
         self.aliens.remove(alien_obj)
 
         if len(self.aliens) == 0:
-            print("level up")
             self.level_up()
 
     #On utilise alien_obj=None dans le cas où la perte d'une vie est causée par un laser.
     #Dans ce cas l'alien ne disparait pas
     def loose_life(self, alien_obj=None):
-        print("lives updated")
         if self.livesInt > 0:
             self.livesInt -= 1
             self.livesTxt.set("Lives : {}".format(self.livesInt))
@@ -155,6 +152,5 @@ class Game:
     def wall_detroyed(self, wall):
         for i in range(len(self.walls)):
             if self.walls[i] == wall:
-                print("wall destroyed")
                 self.walls[i].destroyed = True
                 self.canvas.itemconfigure(self.walls[i].wallSquare, state='hidden')

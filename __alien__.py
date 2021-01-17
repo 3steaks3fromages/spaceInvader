@@ -58,7 +58,6 @@ class Alien:
             if self.y > 315:
                 # Le joueur perd une vie et l'alien disparait
                 self.game.loose_life(self)
-                print("-1 life")
                 self.canvas.delete(self.alien)
                 del self
                 return
@@ -107,7 +106,6 @@ class Alien:
 
             self.noLaseralien = True
 
-            print("ship hit")
             self.game.loose_life()
 
         for i in range(len(self.walls)):
@@ -127,7 +125,6 @@ class Alien:
                 self.canvas.delete(self.laseralien)
                 self.noLaseralien = True
 
-                print("laser out of range")
 
             else:
                 # Le laser continue sa trajectoire
